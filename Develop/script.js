@@ -1,6 +1,9 @@
 // Assignment code here
 
-// Array of objects for each character type
+// Array of objects for each character type with their ascII values.
+// Each character types will have their own beginning and end ascii values.
+// The ascII values for the "special characters" are spread apart from each other.
+// ascII table: http://www.asciitable.com/
 var charType = [
   {
     type: "numeric", // a type of numeric character
@@ -19,9 +22,6 @@ var charType = [
   },
   {
     type: "special", // a special type of character
-
-    // The ascii values for the special characters are spread apart from each other.
-    // Each section will have their own beginning and end values.
     asciiSets: [
       {
         range: "Space to /", // targeted characters
@@ -47,28 +47,43 @@ var charType = [
   }
 ]
 
-// create a function that checks for pass length
-var passLength = function () {
-  // check if the value is null
+
+// getPassLength function prompts the user for the length of the password.
+// This function will loop until the user inputs the correct value.
+// The function returns the prompted integer value.
+var getPassLength = function () {
   
-    // check if the value is greater than 7 and less than 129
-    // check if the value is an integer type.
-      // loop if it fails any of the above
-    
-    // set the password length variable to the user input if it passes
+  var passLength = 0; // Length of a passcode
+
+  while (passLength < 8 || passLength > 128 || typeof passLength != "number"){
+
+    passLength = prompt("Enter a number to choose a password length of at least 8 characters and no more than 128 characters");
+
+    if (passLength < 8 ){
+
+      alert("You entered a number that's too low. Password length must be at least 8 characters and no more than 128 characters");
+
+    } else if (passLength > 128) {
+
+      alert("You entered a number that's too high. Password length must be at least 8 characters and no more than 128 characters");
+
+    } else {
+
+      alert("You entered an invalid number. Password length must be an integer.");
+
+    }
+  }
+  return passLength;
 }
-
-    
-
-// Create a function that passes range of numbers
-  // if xx is false, values xx ~ yy are not allowed **repeat for each character type.
-  
-// create a function that checks if the rng is within the range of accepted range
 
 // create RNG that goes from min to max
 var passwordRNG = function (min, max) {
   return Math.floor(Math.random() * min - max) + min;
 }
+
+// make a function that repeatedly generates a random character and concactenates the characters until the desired password length
+
+
 
 // run the RNG until the password length matches the prompted length
 
