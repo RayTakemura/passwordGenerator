@@ -1,9 +1,9 @@
 // Assignment code here
 
-// Array of objects for each character type with their ascII values.
+// Array of objects for each character type with their ascii values.
 // Each character types will have their own beginning and end ascii values.
-// The ascII values for the "special characters" are spread apart from each other.
-// ascII table: http://www.asciitable.com/
+// The ascii values for the "special characters" are spread apart from each other.
+// ascii table: http://www.asciitable.com/
 var charType = [
   {
     type: "numeric", // a type of numeric character
