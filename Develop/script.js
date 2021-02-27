@@ -21,7 +21,30 @@ var charType = [
     asciiEnd: 122 // the ascii value for z
   },
   {
-    type: "special" // a special type of character
+    type: "special",// a special type of character
+    specialType: [
+      {
+        range: "Space to /", // targeted characters
+        begin: 32, // space has value of 32
+        end: 47 // / has value of 47
+      },
+      {
+        range: ": to @",
+        begin: 58,
+        end: 64
+      },
+      {
+        range: "[ to `",
+        begin: 91,
+        end: 96
+      },
+      {
+        range: "{ to ~",
+        begin: 123,
+        end: 126
+      }
+    ]
+
   }
 ]
 
@@ -56,8 +79,8 @@ var getPassLength = function () {
   
   var passLength = 0; // Length of a passcode
 
-  while (passLength < 8 || passLength > 128 || typeof passLength != "number"){
-
+  while (passLength < 8 || passLength > 128 || isNaN(passLength) ){
+    passLength = 0;
     passLength = parseInt(prompt("Enter a number to choose a password length of at least 8 characters and no more than 128 characters"));
 
     if (passLength < 8 ){
@@ -68,11 +91,11 @@ var getPassLength = function () {
 
       alert("You entered a number that's too high. Password length must be at least 8 characters and no more than 128 characters");
 
-    } else if (typeof passLength != "number"){
+    } else if (isNaN(passLength)){
 
       alert("You entered an invalid number. Password length must be an integer.");
 
-    }
+    } 
   }
   return passLength;
 }
@@ -114,11 +137,11 @@ var generatePassword = function () {
 // Repeatedly generates a value within the index
   while(password.length < passLength){
 
-    arrayIndex = passwordRNG(0, charType.length);
+    arrayIndex = passwordRNG(0, charType.length); // Randomly choose a type of character to generate
 
     if (arrayIndex === 0 && numeric){
 
-      asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
+      asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1); // 
       password += String.fromCharCode(asciiVal);
 
     } else if (arrayIndex === 1 && upperCase){
