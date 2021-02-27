@@ -116,7 +116,7 @@ var generatePassword = function () {
 
     arrayIndex = passwordRNG(0, charType.length);
 
-    if (arrayIndex === 0 && lowerCase){
+    if (arrayIndex === 0 && numeric){
 
       asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
       password += String.fromCharCode(asciiVal);
@@ -126,7 +126,7 @@ var generatePassword = function () {
       asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
       password += String.fromCharCode(asciiVal);
 
-    } else if (arrayIndex === 2 && numeric){
+    } else if (arrayIndex === 2 && lowerCase){
 
       asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
       password += String.fromCharCode(asciiVal);
