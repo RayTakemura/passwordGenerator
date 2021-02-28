@@ -112,15 +112,15 @@ var generatePassword = function () {
   // Repeatedly generates a value within the index
   while(password.length < passLength){
     
-    var arrayIndex = passwordRNG(0, charType.length); // Randomly choose a type of character to generate
-    //var asciiVal = 0;
+    // Randomly choose a type of character to generate
+    var arrayIndex = passwordRNG(0, charType.length); 
 
     if (arrayIndex === 0 && numeric){
 
-      var min = charType[arrayIndex].asciiBegin;
-      var max = charType[arrayIndex].asciiEnd + 1;
-      var asciiVal = passwordRNG(min, max); 
-      password += String.fromCharCode(asciiVal);
+      var min = charType[arrayIndex].asciiBegin; //Pick up the first ascii value for this type of character
+      var max = charType[arrayIndex].asciiEnd + 1; //The max value for rng is the last ascii value + 1
+      var asciiVal = passwordRNG(min, max); //Retrieve a random ascii value within the range of the character type
+      password += String.fromCharCode(asciiVal); //Concactenate the random character to the password string
 
     } else if (arrayIndex === 1 && upperCase){
       
