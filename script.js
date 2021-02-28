@@ -94,17 +94,33 @@ var generatePassword = function () {
   // Prompt length of pass
   var passLength = getPassLength();
 
-  // Confirm for lower case 
-  var lowerCase = confirm("Would you like your password to contain lower case alphabetical character?");
+  // Set up for the while loop
+  var valid = true;
 
-  // Confirm for upper case
-  var upperCase = confirm("Would you like your password to contain upper case alphabetical character?");
+  do{
 
-  // Confirm for numeric value
-  var numeric = confirm("Would you like numeric values in your passcode?");
+    // if it loops, then the window alert warns the user to choose at least one character type.
+    if (!valid){
+      alert("Please choose at least one character type.");
+    }
 
-  // Confirm for special characters
-  var special = confirm("Would you like special characters in your passcode?");
+    // Confirm for lower case 
+    var lowerCase = confirm("Would you like your password to contain lower case alphabetical character?");
+
+    // Confirm for upper case
+    var upperCase = confirm("Would you like your password to contain upper case alphabetical character?");
+
+    // Confirm for numeric value
+    var numeric = confirm("Would you like numeric values in your passcode?");
+
+    // Confirm for special characters
+    var special = confirm("Would you like special characters in your passcode?");
+
+    // Activate the if statement in this loop if it loops
+    valid = false;
+
+  } while( lowerCase === false && upperCase === false && numeric === false && special === false );
+  
 
   // An empty password string. This string will be concatenated with random chars during the following while loop
   var password = "";
