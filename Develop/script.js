@@ -21,30 +21,7 @@ var charType = [
     asciiEnd: 122 // the ascii value for z
   },
   {
-    type: "special",// a special type of character
-    specialType: [
-      {
-        range: "Space to /", // targeted characters
-        begin: 32, // space has value of 32
-        end: 47 // / has value of 47
-      },
-      {
-        range: ": to @",
-        begin: 58,
-        end: 64
-      },
-      {
-        range: "[ to `",
-        begin: 91,
-        end: 96
-      },
-      {
-        range: "{ to ~",
-        begin: 123,
-        end: 126
-      }
-    ]
-
+    type: "special"// a special type of character
   }
 ]
 
@@ -129,35 +106,42 @@ var generatePassword = function () {
   // Confirm for special characters
   var special = confirm("Would you like special characters in your passcode?");
 
-  // Instantiate an integer to assign a random value in the for loop.
-  var arrayIndex = -1;
-  var asciiVal = 0;
+  // An empty password string. This string will be concatenated with random chars during the following while loop
   var password = "";
 
-// Repeatedly generates a value within the index
+  // Repeatedly generates a value within the index
   while(password.length < passLength){
-
-    arrayIndex = passwordRNG(0, charType.length); // Randomly choose a type of character to generate
+    
+    var arrayIndex = passwordRNG(0, charType.length); // Randomly choose a type of character to generate
+    //var asciiVal = 0;
 
     if (arrayIndex === 0 && numeric){
 
-      asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1); // 
+      var min = charType[arrayIndex].asciiBegin;
+      var max = charType[arrayIndex].asciiEnd + 1;
+      var asciiVal = passwordRNG(min, max); 
       password += String.fromCharCode(asciiVal);
 
     } else if (arrayIndex === 1 && upperCase){
-
-      asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
+      
+      var min = charType[arrayIndex].asciiBegin;
+      var max = charType[arrayIndex].asciiEnd + 1;
+      var asciiVal = passwordRNG(min, max); 
       password += String.fromCharCode(asciiVal);
 
     } else if (arrayIndex === 2 && lowerCase){
 
-      asciiVal = passwordRNG(charType[arrayIndex].asciiBegin, charType[arrayIndex].asciiEnd + 1);
+      var min = charType[arrayIndex].asciiBegin;
+      var max = charType[arrayIndex].asciiEnd + 1;
+      var asciiVal = passwordRNG(min, max); 
       password += String.fromCharCode(asciiVal);
 
     } else if (arrayIndex === 3 && special){
 
-      arrayIndex = passwordRNG(0, specialType.length);
-      asciiVal = passwordRNG(specialType[arrayIndex].begin, specialType[arrayIndex].end + 1);
+      arrayIndex = passwordRNG(0, specialType.length); //pick a random index within the specialType array
+      var min = specialType[arrayIndex].begin;
+      var max = specialType[arrayIndex].end;
+      var asciiVal = passwordRNG(min, max); 
       password += String.fromCharCode(asciiVal);
 
     } 
