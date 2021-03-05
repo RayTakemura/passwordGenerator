@@ -5,7 +5,7 @@ Create random passwords for the client.
 The password generator can limit the types of characters to be included in the password.
 
 ## Demo
-<img src="./assets/images/Demo.png" alt="Picture of the website">
+<img src="./assets/images/Demo.png" alt="Picture of the website" width="404">
 
 ## Built With
 * HTML
